@@ -1,20 +1,26 @@
 import React, {Component} from 'react';
 
 class Product extends Component {
+    constructor(props) {
+        super(props);
+        this.onAddToCart = this.onAddToCart.bind(this);
+    }
+    onAddToCart(){
+        alert(this.props.name);
+    }
     render() {
         return (
             <div>
-                <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     <div className="thumbnail">
-                        <img src="https://cdn.tgdd.vn/Category/Quicklink/7978/1\090521-050308.jpg" alt="Đồng hồ thời trang" />
+                        <img src={this.props.img} alt={this.props.name} />
                         <div className="caption">
-                            <h3>Title</h3>
+                            <p>{this.props.children}</p>
+                            <h5>{this.props.name}</h5>
+                            <p>Giá: {this.props.price}</p>
                             <p>
-                                Content...
-                            </p>
-                            <p>
-                                <a href="#" className="btn btn-primary">Action</a>
-                                <a href="#" className="btn btn-default">Action</a>
+                                <a href="#" className="btn btn-primary" onClick={ this.onAddToCart }>Mua ngay</a>
+                                <a href="#" className="btn btn-default">Xem chi tiết</a>
                             </p>
                         </div>
                     </div>
