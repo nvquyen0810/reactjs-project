@@ -3,9 +3,18 @@ import React, {Component} from 'react';
 import './App.css';
 import Header from "./components/Header";
 import Product from "./components/Product";
-import product from "./components/Product";
+import State from "./components/State";
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        // this.onAddNew = this.onAddNew.bind(this);
+    }
+
+    onAddNew = () => {
+        console.log(this.refs.name.name);
+    }
+
     render() {
         const prod = {
             id: 12,
@@ -54,10 +63,10 @@ class App extends Component {
         ]
         const list = products.map((product, index) => {
             return <Product key={index}
-                    img={product.img}
-                    name={product.name}
-                    price={product.price}
-                >{product.des}</Product>
+                            img={product.img}
+                            name={product.name}
+                            price={product.price}
+            >{product.des}</Product>
         })
 
         const elements = users.map((user, index) => {
@@ -80,16 +89,29 @@ class App extends Component {
                 <h5>{elements}</h5>
 
                 <hr/>
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <legend>Thêm sản phẩm</legend>
+
+                    <div className="form-group">
+                        <label>Thêm đồng hồ</label>
+                        <input type="text" className="form-control" ref="name"/>
+                    </div>
+
+                    <button type="submit" className="btn btn-primary" onClick={this.onAddNew}>Thêm</button>
+                </div>
+                <hr/>
 
                 <div className="container">
                     <div className='row'>
                         <div className="row">
                             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                { list }
+                                {list}
                             </div>
                         </div>
                     </div>
                 </div>
+                <hr/>
+                <State />
 
             </div>
         );
